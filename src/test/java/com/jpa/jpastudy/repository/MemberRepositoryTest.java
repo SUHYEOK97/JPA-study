@@ -156,5 +156,21 @@ class MemberRepositoryTest {
 
     }
 
+    @Test
+    public void memberCustomTest(){
+        memberRepository.save(new MemberEntity(12, "Member1"));
+        memberRepository.save(new MemberEntity(15, "Member2"));
+        memberRepository.save(new MemberEntity(6, "Member3"));
+        memberRepository.save(new MemberEntity(18, "Member4"));
+        memberRepository.save(new MemberEntity(19, "Member5"));
+
+        List<MemberEntity> memberCustom = memberRepository.findMemberCustom();
+
+        for(MemberEntity m : memberCustom){
+            System.out.println(m);
+        }
+
+    }
+
 
 }

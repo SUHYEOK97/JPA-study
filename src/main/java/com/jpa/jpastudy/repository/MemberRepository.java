@@ -12,7 +12,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
+public interface MemberRepository extends JpaRepository<MemberEntity, Long>, MemberRepositoryCustom {
     List<MemberEntity> findByUserNameAndAgeGreaterThan(String userName, Integer age);
     List<MemberEntity> findByUserNameAndAgeGreaterThanEqual(String userName, Integer age);
 
