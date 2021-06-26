@@ -23,6 +23,11 @@ public class MemberEntity {
     @JoinColumn(name = "team_id")
     private TeamEntity team;
 
+    public MemberEntity(Integer age, String userName) {
+        this.age = age;
+        this.userName = userName;
+    }
+
     public MemberEntity(Integer age, String userName, TeamEntity team) {
         this.age = age;
         this.userName = userName;
