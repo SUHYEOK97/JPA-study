@@ -44,8 +44,6 @@ class MemberEntityTest {
             System.out.println("member = " + m.getUserName());
         }
 
-
-
     }
 
 }
