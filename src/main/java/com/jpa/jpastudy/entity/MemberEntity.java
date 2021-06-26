@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @ToString(of = {"id", "username", "age"})
-public class MemberEntity {
+public class MemberEntity extends BaseEntity{
 
     @Id @GeneratedValue
     @Column(name = "member_id")

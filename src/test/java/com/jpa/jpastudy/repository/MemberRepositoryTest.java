@@ -172,5 +172,25 @@ class MemberRepositoryTest {
 
     }
 
+    @Test
+    public void JpaEventBaseEntity() throws Exception {
+        MemberEntity member = new MemberEntity(12, "Member1");
+        memberRepository.save(member);
+
+        Thread.sleep(100);
+        member.setUserName("test");
+
+        em.flush();
+        em.clear();
+
+        MemberEntity findMember = memberRepository.findById(member.getId()).get();
+
+        System.out.println("생성 : " + findMember.getCreatedDate());
+        System.out.println("수정 : " + findMember.getLastModifiedDate());
+        System.out.println("수정 : " + findMember.getCreatedBy());
+        System.out.println("수정 : " + findMember.getLastModifiedBy());
+
+    }
+
 
 }
