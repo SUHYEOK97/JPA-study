@@ -14,6 +14,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,6 +30,9 @@ class MemberRepositoryTest {
 
     @Autowired
     private MemberRepository memberRepository;
+
+    @PersistenceContext
+    private EntityManager em;
 
     @Test
     public void findByNameTest() {
@@ -133,6 +139,20 @@ class MemberRepositoryTest {
         assertThat(page.getNumber()).isEqualTo(0);
         assertThat(page.isFirst()).isTrue();
         assertThat(page.hasNext()).isTrue();
+
+    }
+
+    @Test
+    public void bulkAgePlus(){
+        memberRepository.save(new MemberEntity(12, "Member1"));
+        memberRepository.save(new MemberEntity(15, "Member2"));
+        memberRepository.save(new MemberEntity(6, "Member3"));
+        memberRepository.save(new MemberEntity(18, "Member4"));
+        memberRepository.save(new MemberEntity(19, "Member5"));
+
+        int resultCount = memberRepository.bulkAgePlus(10);
+
+        assertThat(resultCount).isEqualTo(4);
 
     }
 
